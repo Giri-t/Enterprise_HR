@@ -1,0 +1,16 @@
+{
+  "name": "playwrightwithjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^22.10.1",
+    "allure-playwright": "^3.1.0",
+    "playwright": "^1.53.1"
+  }
+}
