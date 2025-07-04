@@ -1,0 +1,3 @@
+Three events are present in the page
+rgb(17, 97, 212)
+The word "giri" is blue.
