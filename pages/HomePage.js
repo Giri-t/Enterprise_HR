@@ -201,6 +201,7 @@ export class HomePage {
     async knowledgeArticleSaveButton() {
         await this.page.waitForSelector(this.saveBUtton, { state: 'visible' });
         await this.page.click(this.saveBUtton);
+        await this.page.waitForTimeout(7000);
     }
 
     async urlErrorfixForArtrileCreation(fillURLNameField) {
@@ -714,10 +715,12 @@ export class HomePage {
         await this.page.locator('iframe[title="Rich Text Area"]').contentFrame().getByLabel('Content Rich Text Area. Press').fill(fillContentField);
     }
     async clickOnEventAddToCalender() {
+        await this.page.waitForTimeout(5000);
         await this.page.locator(this.AddtocalendarButton).click()
 
     }
     async selectOnYesInAddToCalender() {
+        await this.page.waitForTimeout(5000);
         await this.page.locator('(//span[@class="slds-media__body"])//span[@title="Yes" ]').click()
     }
 
@@ -753,8 +756,8 @@ export class HomePage {
 
     }
 
-    async url(){
-         await this.page.locator(this.urlNameField).fill("testyyy")
+    async url(urlvalue){
+         await this.page.locator(this.urlNameField).fill(urlvalue)
     }
 
     async all_errors(){

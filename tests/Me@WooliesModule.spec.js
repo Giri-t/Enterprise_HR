@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { MeAtWooliesPage } from '../pages/MeAtWooliesPage';
 import { getFormattedDateTime } from '../utils/getFormattedDateTime';
+import {Home_page_events} from '../pages/Home_page_events'
 const { chromium } = require('playwright');
 
 
@@ -955,6 +956,33 @@ test('TC1,TC2,TC3,TC4,TC10,TC11 - Verify teamspace user can create event and ens
     });
 
 });
+
+test('TC23',async({page})=>{
+    let homePage, wooliesPage;
+    const login = new LoginPage(page);
+    await test.step('Login Page', async () => {
+        await login.goToLoginPage();
+        await login.login(testdata.username, testdata.password);
+    });
+
+    const home = new HomePage(page);
+    await test.step('Comms user login', async () => {
+        homePage = await home.userLogin(testdata.commsUser)
+    }
+    );
+    const home1 = new HomePage(homePage);
+    const event = new Home_page_events(homePage)
+    await test.step('Event creation in knowledge', async () => {
+        await home1.clickOnAppLauch();
+        const me_woolies=await event.applauncher_me_wooleis()
+        const event1 = new Home_page_events(me_woolies)
+        // await event1.applauncher_me_wooleis() 
+        await event1.Verify_no_events()
+        await event1.verify_moreoptions_notpresent()
+
+})
+})
+
 test('TC6,TC7,TC8,TC12 - Verify the event should display in blue ribbon, blue background, and blue font, if it is created by keeping "Yes" in Add to calender field and published', async ({ page }) => {
     let homePage, wooliesPage;
     const login = new LoginPage(page);
@@ -1020,7 +1048,7 @@ test('TC6,TC7,TC8,TC12 - Verify the event should display in blue ribbon, blue ba
 
 //Homepage
 
-test('TC5,TC30-Verify the teamspace user able to see errors & able to create events & able', async ({ page }) => {
+test('TC30,TC44-Verify the teamspace user able to see errors & able to create events & able', async ({ page }) => {
     let homePage, wooliesPage;
     const login = new LoginPage(page);
     await test.step('Login Page', async () => {
@@ -1034,6 +1062,7 @@ test('TC5,TC30-Verify the teamspace user able to see errors & able to create eve
     }
     );
     const home1 = new HomePage(homePage);
+    const event = new Home_page_events(homePage)
     await test.step('Event creation in knowledge', async () => {
         await home1.clickOnAppLauch();
         await home1.navigationToCommsManager(testdata.searchCommsManager);
@@ -1056,7 +1085,7 @@ test('TC5,TC30-Verify the teamspace user able to see errors & able to create eve
         // await home1.selectOnYesInAddToCalender()
         await home1.fillOnWorldCountAfter(testdata.fillWorldCountAfter)
         await home1.fillOnWorldCountBefore(testdata.fillworldCountBefore)
-        await home1.url()
+        await home1.url(testdata.urlvalue)
         await home1.Expiry(testdata.Expiry)
         
         await home1.knowledgeArticleSaveButton();
@@ -1070,11 +1099,101 @@ test('TC5,TC30-Verify the teamspace user able to see errors & able to create eve
         await home1.clickOnEventAddToCalender()
         await home1.selectOnYesInAddToCalender()
         await home1.knowledgeArticleSaveButton();
+        // await event.close_popup_on_publishevent();
+        // const timestamp = getFormattedDateTime();
+        // await homePage.screenshot({ path: `screenshot/${timestamp}_EventErrormessage.png`, fullPage: true });
+        await event.Publish_events()
+        await event.scheduleEvent(testdata.Schedulepublicationon)
         
-        const timestamp = getFormattedDateTime();
-        await homePage.screenshot({ path: `screenshot/${timestamp}_EventErrormessage.png`, fullPage: true });
+    })
+})
 
+test('TC33,TC32', async ({ page }) => {
+    let homePage, wooliesPage;
+    const login = new LoginPage(page);
+    await test.step('Login Page', async () => {
+        await login.goToLoginPage();
+        await login.login(testdata.username, testdata.password);
     });
+
+    const home = new HomePage(page);
+    await test.step('Comms user login', async () => {
+        homePage = await home.userLogin(testdata.commsUser)
+    }
+    );
+    const home1 = new HomePage(homePage);
+    const event = new Home_page_events(homePage)
+    await test.step('Event creation in knowledge', async () => {
+        await home1.clickOnAppLauch();
+        await home1.navigationToCommsManager(testdata.searchCommsManager);
+        await home1.closeAllTabs()
+        await home1.popUpClose();
+        await home1.natToKnowledge()
+        await home1.clickOnNewButton();
+        await home1.clickOnEventInKnownledgeTab()
+        await home1.clickOnNextButton();
+        await home1.popUpClose();
+        await home1.fillOnEventTitle(testdata.blueEventTitleName)
+        await home1.fillOnEventStartDate(testdata.blueEventStartDate)
+        await home1.clickOnEventStartTime()
+        await home1.fillOnEventEndDate(testdata.Erroreventdate)
+        // await home1.fillOnEventEndDate(testdata.blueEventEndDate)
+        await home1.clickOnEventEndTime()
+        await home1.clickOnEventTimeZone()
+        await home1.fillOnContentField(testdata.fillContentField)
+        await home1.clickOnEventAddToCalender()
+        // await home1.selectOnYesInAddToCalender()
+        await home1.fillOnWorldCountAfter(testdata.fillWorldCountAfter)
+        await home1.fillOnWorldCountBefore(testdata.fillworldCountBefore)
+        await home1.url(testdata.urlvalue)
+        await home1.Expiry(testdata.Expiry)
+        
+        await home1.knowledgeArticleSaveButton();
+        await home1.all_errors()
+
+        // await home1.clickOnPulishedButton()
+        // await home1.End_Start_date_error()
+        // await home1.Event_error_validation() 
+        await home1.fillOnEventEndDate(testdata.blueEventEndDate)
+        await home1.closeKnowledgeArticleErrorPopup()
+        await home1.clickOnEventAddToCalender()
+        await home1.selectOnYesInAddToCalender()
+        await home1.knowledgeArticleSaveButton();
+        await event.Verify_draft()
+
+        // await event.close_popup_on_publishevent();
+        // const timestamp = getFormattedDateTime();
+        // await homePage.screenshot({ path: `screenshot/${timestamp}_EventErrormessage.png`, fullPage: true });
+        await event.Publish_events()
+        await event.clickOnPublishNow()
+        await event.verify_publish()
+      })
+    })
+
+test('TC5,TC6,TC15', async({page})=>{
+    let homePage, wooliesPage;
+    const login = new LoginPage(page);
+    await test.step('Login Page', async () => {
+        await login.goToLoginPage();
+        await login.login(testdata.username, testdata.password);
+    });
+
+    const home = new HomePage(page);
+    await test.step('Comms user login', async () => {
+        homePage = await home.userLogin(testdata.commsUser)
+    }
+    );
+    const home1 = new HomePage(homePage);
+    const event = new Home_page_events(homePage)
+    await test.step('Event creation in knowledge', async () => {
+        await home1.clickOnAppLauch();
+        const me_woolies=await event.applauncher_me_wooleis()
+        const event1 = new Home_page_events(me_woolies)
+        await event1.three_events()
+        await event1.color_of_event()
+        await event1.click_on_event()
+
+})
     
 
 });

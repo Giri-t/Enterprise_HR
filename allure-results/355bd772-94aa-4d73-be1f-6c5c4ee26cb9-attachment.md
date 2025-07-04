@@ -1,0 +1,77 @@
+# Page snapshot
+
+```yaml
+- heading "Good afternoon, Saravanan!" [level=2]
+- paragraph: Have a great day!
+- list:
+  - listitem:
+    - link " Submit a request":
+      - /url: "#"
+  - listitem:
+    - link " Completed tasks & requests":
+      - /url: "#"
+- heading " Find AI tools for your tasks" [level=3]
+- paragraph: Select a task to see recommended AI tools to get the job done.
+- tablist:
+  - tab "For you" [selected]
+  - tab "All news"
+- tabpanel "For you":
+  - img
+  - paragraph: Pinned
+  - heading "Automation Testing100" [level=2]
+  - paragraph: Automation Testing2
+  - text: 27 June 2025 Saravanan Comms
+  - img
+  - heading "Test comment test" [level=2]
+  - paragraph: Test Comment
+  - text: 27 June 2025 Saravanan Comms
+  - img
+  - heading "Automation Testing14" [level=2]
+  - paragraph: Automation Testing2
+  - text: 27 June 2025 Saravanan Comms
+  - img
+  - heading "infor Tesing" [level=2]
+  - paragraph: test
+  - text: 4 June 2025 Madalyn Anderson
+  - img
+  - heading "testiobkasudgvsayic" [level=2]
+  - paragraph: test
+  - text: 3 June 2025 Madalyn Anderson
+- text: View more
+- article:
+  - paragraph: THU
+  - heading "3" [level=2]
+  - heading "Next up today" [level=4]
+  - heading "See the next event from your Google Calendar here!" [level=5]
+  - button "Connect calendar"
+  - heading "Upcoming events at Woolworths Group" [level=3]
+  - heading "r" [level=5]
+  - paragraph: Wednesday 02 July, 1:15am - 1:15am
+  - button "Add to Calendar"
+  - heading "f" [level=5]
+  - paragraph: Wednesday 02 July, 2:30am - 2am
+  - button "Add to Calendar"
+  - heading "qq" [level=5]
+  - paragraph: Wednesday 09 July, 1:15am - 1:15am
+  - button "Add to Calendar"
+  - text: Events shown in AEST 
+  - button "View more"
+- article
+- article:
+  - heading "Benefits" [level=2]
+  - paragraph: See your Everyday Rewards+ balance here! Points balance is updated daily
+  - button "Connect Everyday Rewards+"
+  - button "View benefits"
+- heading [level=4]
+- button ""
+- button "Book a WeSpace"
+- article
+- img
+- heading "Acknowledgement of Country" [level=2]
+- paragraph:
+  - text: We acknowledge the Traditional Owners and Custodians of Country throughout Australia. We pay our respects to all First Nations peoples and acknowledge Elders past and present.
+  - link "Read more about our commitment to reconciliation ":
+    - /url: "#"
+- status
+- text: Me@Woolies
+```

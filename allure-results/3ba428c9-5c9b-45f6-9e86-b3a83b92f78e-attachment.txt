@@ -1,0 +1,1 @@
+Date of Expiry should be greater or equal to End Date.Start Date, End Date, Timezone, Enable 'Add to Calendar' button and Content is required.
